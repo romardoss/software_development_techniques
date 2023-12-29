@@ -1,5 +1,4 @@
-﻿using DAL.Entities;
-using DAL.Repositories.Impl;
+﻿using DAL.Repositories.Impl;
 using DAL.Repositories.Interfaces;
 using DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
