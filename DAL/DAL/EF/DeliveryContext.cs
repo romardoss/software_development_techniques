@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.EF
 {
-    internal class DeliveryContext : DbContext
+    public class DeliveryContext : DbContext
     {
         public DbSet<Client> Clients { get; set; }
         public DbSet<Order> Orders { get; set; }
