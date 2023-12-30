@@ -47,5 +47,29 @@
             mockDbSet.Verify(dbSet => dbSet.Find(expecterOrder.OrderId), Times.Once());
             Assert.Equal(expecterOrder, actualOrder);
         }
+
+        [Fact]
+        public void Delete_InputId_CalledFindAndRemoveMethodOfDbSetWithCorrectArg()
+        {
+            //Arrange
+            DbContextOptions options = new DbContextOptionsBuilder<DeliveryContext>().Options;
+            var mockContext = new Mock<DeliveryContext>(options);
+            var mockDbSet = new Mock<DbSet<Order>>();
+            mockContext.Setup(context => context.Set<Order>())
+                .Returns(mockDbSet.Object);
+
+            Order expecterOrder = new() { OrderId = 1 };
+            mockDbSet.Setup(mock => mock.Find(expecterOrder.OrderId)).Returns(expecterOrder);
+
+            var repository = new TestOrderRepository(mockContext.Object);
+
+
+            //Act
+            repository.Delete(expecterOrder.OrderId);
+
+            //Assert
+            mockDbSet.Verify(dbSet => dbSet.Find(expecterOrder.OrderId), Times.Once());
+            mockDbSet.Verify(dbSet => dbSet.Remove(expecterOrder), Times.Once());
+        }
     }
 }
