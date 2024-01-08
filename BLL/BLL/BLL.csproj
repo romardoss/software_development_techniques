@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CCL">
+      <HintPath>..\..\CCL\CCL\obj\Debug\net6.0\CCL.dll</HintPath>
+    </Reference>
     <Reference Include="DAL">
       <HintPath>..\..\DAL\DAL\obj\Debug\net6.0\DAL.dll</HintPath>
     </Reference>
