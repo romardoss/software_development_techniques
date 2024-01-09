@@ -21,7 +21,7 @@ namespace BLL.Services.Impl
             _database = unitOfWork;
         }
 
-        public IEnumerable<OrderDTO> GetOrders(int clientId)
+        public IEnumerable<OrderDTO> GetOrders()
         {
             var user = SecurityContext.GetUser();
             var userType = user.GetType();
@@ -31,7 +31,7 @@ namespace BLL.Services.Impl
                 throw new MethodAccessException();
             }
 
-            var ordersEntities = _database.ClientRepository.Get(clientId).Orders;
+            var ordersEntities = _database.OrderRepository.Find(x => x.ClientId == user.UserId);
 
             var mapper = new MapperConfiguration(
                 cfg => cfg.CreateMap<Order, OrderDTO>()).CreateMapper();
